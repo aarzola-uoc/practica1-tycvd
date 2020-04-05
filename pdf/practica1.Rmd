@@ -54,6 +54,16 @@ En el segundo, se presentan en sí las propias estadísticas desagregadas de cad
 
 El periodo de recolección de los datos ha sido desde el inicio de la competición (3 de octubre) hasta la última jornada (5 de marzo, debido a la cancelación por la crisis del Coronaviurs). 
 
+# Publicación del dataset
+
+Se han publicados los dos _datasets_ obtenidos en el repositorio web **Zenodo** y se pueden acceder a través del siguiente enlace:
+
+* https://zenodo.org/record/3740661#.XoouwVNKgnU
+
+El DOI (_Digital Object Identifier_) asignado ha sido el siguiente:
+
+* 10.5281/zenodo.3740661
+
 # Agradecimientos
 
 Los datos, recogidos de la web oficial de la competición, son propiedad de © Euroleague Ventures SA. Para ello se ha hecho uso del lenguaje de programación Python y de técnicas de WebScrapping para extraer la información alojada en las páginas.
@@ -62,7 +72,6 @@ Los datos, recogidos de la web oficial de la competición, son propiedad de © E
 
 De la mano de lo explicado en la contextualización, se hace interesante la disponibilidad de los datos de una manera sencilla de analizar como primer paso de cara a un posterior uso en el planteamiento de los partidos o de las semanas de entrenamiento. 
 La mayor ambición es la realización de un análisis profundo que permita a los equipos disponer de una herramienta que les proporcione en los datos un valor añadido. A partir de las estadísticas recogidas por Euroliga, se podrían crear nuevas estadísticas más precisas que recojan otro tipo de datos en función de los ya existentes.
-
 
 # Licencia
 
@@ -74,4 +83,4 @@ Investigación previa            | MSP, AAG
 Redacción de las respuestas     | MSP, AAG
 Creación del repositorio GitHub | MSP, AAG
 Desarrollo código               | MSP, AAG
-
+Publicación de los datasets     | MSP, AAG

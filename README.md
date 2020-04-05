@@ -10,6 +10,12 @@ En la sección `Wiki` de este proyecto se encuentran los nombres de los componen
 
 Se puede acceder a la `Wiki` haciendo [click aquí](https://github.com/aarzola-uoc/practica1-tycvd/wiki/Pr%C3%A1ctica-1:-Web-scraping) o a través de la pestaña correspondiente de la barra superior de herramientas de este repositorio de _GitHub_.
 
+## Publicación del dataset
+
+Se han publicado los datasets obtenidos (partidos y jugadores) en la web Zenodo con el siguiente DOI:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3740661.svg)](https://doi.org/10.5281/zenodo.3740661)
+
 ## Recursos
 
 1. Subirats, L., Calvo, M. (2019). Web Scraping. Editorial UOC.
