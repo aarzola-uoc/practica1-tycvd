@@ -24,6 +24,8 @@ En cuanto al deporte del que nos ocuparemos en este trabajo, concretamente el ba
 
 Todos estos resultados se encuentran en la web oficial de la competición, www.euroleague.net
 
+![](C:/Users/USER-PC/Desktop/logo.PNG =100x20) 
+
 
 # Componentes del grupo
 
@@ -38,7 +40,7 @@ Para la realización de esta práctica se ha creado un repositorio en _GitHub_ p
 
 # Título para el dataset
 
-Euroliga 2019-2020. Marcadores y estadísticas.
+Euroliga 2019-2020. Marcadores y estadísticas por partido.
 
 # Descripción del dataset
 
@@ -46,14 +48,55 @@ Se propone para este trabajo la obtención de dos datasets, el primero con todos
 
 # Representación gráfica
 
+El proyecto representa, para cada partido, en un dataset los siguientes datos.  
+El primer dataset, recoge los resultados y es el siguiente:
+
+
+![Dataset 1](C:/Users/USER-PC/Desktop/resultado.png) 
+  
+  
+El segundo dataset, recoge las estadísticas individuales dentro de un partido y representa:
+
+![Dataset 2](C:/Users/USER-PC/Desktop/estadistica1.png)
+![Dataset 2](C:/Users/USER-PC/Desktop/estadistica2.png)
+
 # Contenido
 
-En el presente trabajo, se ha desarrollado código para crear dos datasets. El primero, por todos los resultados de la Euroliga, en el que se incluye campo, horario, equipo local, equipo visitante y enlace a las estadísticas.
+Así, definimos la estructura de los dataset como:
 
-En el segundo, se presentan en sí las propias estadísticas desagregadas de cada partido a nivel jugador y equipo.
+- **Euroleague_Scoreboards**: Dicho dataset recoge las resultados por partido y se compone de siete campos:
+  - MatchId: identificador único del partido.
+  - Date: fecha del partido.
+  - HomeTeam: nombre del equipo local.
+  - HomeScore: puntos anotados por el equipo local
+  - VisitingTeam: nombre del equipo visitante.
+  - VisitingScore: puntos anotados por el equipo visitante.
+  - Link: link de estadísticas.  
+  
+- **Euroleague_Stats_per_Game**: Dicho dataset recoge las estadísticas a nivel jugador por partido y se compone de:
+  - MatchId: identificador único de partido.
+  - Team: equipo al que pertenece el jugador.
+  - PlayerNumber: número del jugador.
+  - PlayerName: nombre del jugador.
+  - Min: minutos jugados.
+  - Pts: puntos anotados.
+  - 2FG: tiros de dos (metidos-anotados).
+  - 3FG: tiros de tres (metidos-anotados).
+  - FT: tiros libres (metidos-anotados).
+  - O: rebotes ofensivos.
+  - D: rebotes defensivos.
+  - T: rebotes totales.
+  - As: asistencias.
+  - St: recuperaciones.
+  - To: pérdidas.
+  - Fv: tapones a favor.
+  - Ag: tapones en contra.
+  - Cm: faltas cometidas.
+  - Rv: faltas recibidas.
+  - PIR: valoración del jugador. 
 
-El periodo de recolección de los datos ha sido desde el inicio de la competición (3 de octubre) hasta la última jornada (5 de marzo, debido a la cancelación por la crisis del Coronaviurs). 
-
+El periodo de recolección de los datos es esta temporada, desde los partidos qeu empezaron el 3 de octubre hasta los terminados el 5 de marzo.
+  
 # Publicación del dataset
 
 Se han publicados los dos _datasets_ obtenidos en el repositorio web **Zenodo** y se pueden acceder a través del siguiente enlace:
@@ -74,6 +117,8 @@ De la mano de lo explicado en la contextualización, se hace interesante la disp
 La mayor ambición es la realización de un análisis profundo que permita a los equipos disponer de una herramienta que les proporcione en los datos un valor añadido. A partir de las estadísticas recogidas por Euroliga, se podrían crear nuevas estadísticas más precisas que recojan otro tipo de datos en función de los ya existentes.
 
 # Licencia
+
+
 
 # Contribuciones al trabajo
 

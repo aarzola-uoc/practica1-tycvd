@@ -1,0 +1,330 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Práctica 1: Web scraping},
+            pdfauthor={Miguel Santos Pérez y Alejandro Arzola García},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+% grffile has become a legacy package: https://ctan.org/pkg/grffile
+\IfFileExists{grffile.sty}{%
+\usepackage{grffile}
+}{}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Práctica 1: Web scraping}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{UOC - Tipología y ciclo de vida de los datos}
+  \author{Miguel Santos Pérez y Alejandro Arzola García}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{14 de abril de 2020}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\newpage
+
+\hypertarget{contexto}{%
+\section{Contexto}\label{contexto}}
+
+El auge del valor del dato y su aplicación a cualquier ámbito de la
+sociedad es claro desde su explosión unos años atrás. En este sentido,
+cada vez más tecnologías basadas en el poder del dato se emplean con
+eficiencia en distintos deportes como el fútbol, para diversas tareas
+tales como el fichaje de jugadores, campañas de marketing o estrategias
+de partidos. Técnicas similares son aplicadas al tenis.
+
+En cuanto al deporte del que nos ocuparemos en este trabajo,
+concretamente el baloncesto vivimos en un mundo bipolar. Mientras en
+América, las poderosas franquicias NBA cada vez lo utilizan más en su
+día a día con grandes equipos de Data Scientist, en Europa el gasto en
+la explotación del dato se mantiene en segundo plano. Así pues, la
+inspiración de este estudio es desarrollar el webscrapping sobre el
+conjunto de datos de baloncesto en Europa, como primera aproximación
+para luego utilizar estos datos y buscarles su valor. En este primer
+trabajo, por tanto, se tratará de acceder a los partidos de Euroliga y
+almacernarlos en datasets que sean analizables.
+
+Todos estos resultados se encuentran en la web oficial de la
+competición, www.euroleague.net
+
+\includegraphics{C:/Users/USER-PC/Desktop/logo.PNG =100x20}
+
+\hypertarget{componentes-del-grupo}{%
+\section{Componentes del grupo}\label{componentes-del-grupo}}
+
+\begin{itemize}
+\tightlist
+\item
+  Miguel Santos Pérez
+  (\href{mailto:miguel8santos@uoc.edu}{\nolinkurl{miguel8santos@uoc.edu}})
+\item
+  Alejandro Arzola García
+  (\href{mailto:aarzola@uoc.edu}{\nolinkurl{aarzola@uoc.edu}})
+\end{itemize}
+
+\hypertarget{repositorio-github}{%
+\section{Repositorio Github}\label{repositorio-github}}
+
+Para la realización de esta práctica se ha creado un repositorio en
+\emph{GitHub} para trabajar de manera colaborativa y tener un control de
+versiones sobre el código fuente. Se puede acceder a este repositorio a
+través del siguiente enlace:
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://github.com/aarzola-uoc/practica1-tycvd}
+\end{itemize}
+
+\hypertarget{tuxedtulo-para-el-dataset}{%
+\section{Título para el dataset}\label{tuxedtulo-para-el-dataset}}
+
+Euroliga 2019-2020. Marcadores y estadísticas por partido.
+
+\hypertarget{descripciuxf3n-del-dataset}{%
+\section{Descripción del dataset}\label{descripciuxf3n-del-dataset}}
+
+Se propone para este trabajo la obtención de dos datasets, el primero
+con todos los marcadores, partidos y enlaces a estadísticas y, el
+segundo, con el detalle de las propias estadísticas para su posterior
+análisis.
+
+\hypertarget{representaciuxf3n-gruxe1fica}{%
+\section{Representación gráfica}\label{representaciuxf3n-gruxe1fica}}
+
+El proyecto representa, para cada partido, en un dataset los siguientes
+datos.\\
+El primer dataset, recoge los resultados y es el siguiente:
+
+\begin{figure}
+\centering
+\includegraphics{C:/Users/USER-PC/Desktop/resultado.png}
+\caption{Dataset 1}
+\end{figure}
+
+El segundo dataset, recoge las estadísticas individuales dentro de un
+partido y representa:
+
+\includegraphics{C:/Users/USER-PC/Desktop/estadistica1.png}
+\includegraphics{C:/Users/USER-PC/Desktop/estadistica2.png}
+
+\hypertarget{contenido}{%
+\section{Contenido}\label{contenido}}
+
+Así, definimos la estructura de los dataset como:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Euroleague\_Scoreboards}: Dicho dataset recoge las resultados
+  por partido y se compone de siete campos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    MatchId: identificador único del partido.
+  \item
+    Date: fecha del partido.
+  \item
+    HomeTeam: nombre del equipo local.
+  \item
+    HomeScore: puntos anotados por el equipo local
+  \item
+    VisitingTeam: nombre del equipo visitante.
+  \item
+    VisitingScore: puntos anotados por el equipo visitante.
+  \item
+    Link: link de estadísticas.
+  \end{itemize}
+\item
+  \textbf{Euroleague\_Stats\_per\_Game}: Dicho dataset recoge las
+  estadísticas a nivel jugador por partido y se compone de:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    MatchId: identificador único de partido.
+  \item
+    Team: equipo al que pertenece el jugador.
+  \item
+    PlayerNumber: número del jugador.
+  \item
+    PlayerName: nombre del jugador.
+  \item
+    Min: minutos jugados.
+  \item
+    Pts: puntos anotados.
+  \item
+    2FG: tiros de dos (metidos-anotados).
+  \item
+    3FG: tiros de tres (metidos-anotados).
+  \item
+    FT: tiros libres (metidos-anotados).
+  \item
+    O: rebotes ofensivos.
+  \item
+    D: rebotes defensivos.
+  \item
+    T: rebotes totales.
+  \item
+    As: asistencias.
+  \item
+    St: recuperaciones.
+  \item
+    To: pérdidas.
+  \item
+    Fv: tapones a favor.
+  \item
+    Ag: tapones en contra.
+  \item
+    Cm: faltas cometidas.
+  \item
+    Rv: faltas recibidas.
+  \item
+    PIR: valoración del jugador.
+  \end{itemize}
+\end{itemize}
+
+El periodo de recolección de los datos es esta temporada, desde los
+partidos qeu empezaron el 3 de octubre hasta los terminados el 5 de
+marzo.
+
+\hypertarget{publicaciuxf3n-del-dataset}{%
+\section{Publicación del dataset}\label{publicaciuxf3n-del-dataset}}
+
+Se han publicados los dos \emph{datasets} obtenidos en el repositorio
+web \textbf{Zenodo} y se pueden acceder a través del siguiente enlace:
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://zenodo.org/record/3740661\#.XoouwVNKgnU}
+\end{itemize}
+
+El DOI (\emph{Digital Object Identifier}) asignado ha sido el siguiente:
+
+\begin{itemize}
+\tightlist
+\item
+  10.5281/zenodo.3740661
+\end{itemize}
+
+\hypertarget{agradecimientos}{%
+\section{Agradecimientos}\label{agradecimientos}}
+
+Los datos, recogidos de la web oficial de la competición, son propiedad
+de © Euroleague Ventures SA. Para ello se ha hecho uso del lenguaje de
+programación Python y de técnicas de WebScrapping para extraer la
+información alojada en las páginas.
+
+\hypertarget{inspiraciuxf3n}{%
+\section{Inspiración}\label{inspiraciuxf3n}}
+
+De la mano de lo explicado en la contextualización, se hace interesante
+la disponibilidad de los datos de una manera sencilla de analizar como
+primer paso de cara a un posterior uso en el planteamiento de los
+partidos o de las semanas de entrenamiento. La mayor ambición es la
+realización de un análisis profundo que permita a los equipos disponer
+de una herramienta que les proporcione en los datos un valor añadido. A
+partir de las estadísticas recogidas por Euroliga, se podrían crear
+nuevas estadísticas más precisas que recojan otro tipo de datos en
+función de los ya existentes.
+
+\hypertarget{licencia}{%
+\section{Licencia}\label{licencia}}
+
+\hypertarget{contribuciones-al-trabajo}{%
+\section{Contribuciones al trabajo}\label{contribuciones-al-trabajo}}
+
+\begin{longtable}[]{@{}lc@{}}
+\toprule
+\textbf{Contribuciones} & \textbf{Firma}\tabularnewline
+\midrule
+\endhead
+Investigación previa & MSP, AAG\tabularnewline
+Redacción de las respuestas & MSP, AAG\tabularnewline
+Creación del repositorio GitHub & MSP, AAG\tabularnewline
+Desarrollo código & MSP, AAG\tabularnewline
+Publicación de los datasets & MSP, AAG\tabularnewline
+\bottomrule
+\end{longtable}
+
+
+\end{document}
