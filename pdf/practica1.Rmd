@@ -162,3 +162,8 @@ Crawl-delay: 15
 Podemos ver que para las herramientas `Sosospider`, `Yandex` y `Baiduspider` está bloqueado todo el contenido, pero dado que no usamos ninguna de ellas no nos suponía un problema. La última instrucciónn indica que para cualquier _"user-agent"_  se aplica la política `Crawl-delay` con un valor de 15 segundos.
 
 Ninguna de estas restricciones afectaban al desarrollo de nuestro código _Python_ por lo que comenzamos con su desarrollo. Importamos la librería _BeautifulSoup_ y probamos a obtener todo el código HTML de la página. Después de revisar que los datos que queríamos _scrapear_ se encontraban en el HTML ya comenzamos a utilizar las funciones de esta librería como `find()` o `find_all()`. Cuando ya teníamos todos los datos de los partidos, decidimos obtener el segundo dataset para las estadísticas individuales de los jugadores. Finalmente realizamos una refactorización del código para pasar de un paradigma de programación estructurada a un paradigma de programación orientada a objetos con la creación de nuestra propia clase `EuroligaScraper`.
+
+# Bibliografía consultada
+
+1. Lawson, R. (2015). Web Scrapping with Python. Packt Publishing Ltd. Chapter 2. Scraping the data.
+2. Mitchel, R. (2015). Web Scrapping with Python: Collecting data from the moder web. O'Reilly Media, Inc Chapter 1. Your first web scrapper.
