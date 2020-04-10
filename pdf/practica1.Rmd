@@ -3,6 +3,9 @@ title: 'Práctica 1: Web scraping'
 author: "Miguel Santos Pérez  y Alejandro Arzola García"
 date: "14 de abril de 2020"
 output:
+  word_document:
+    toc: yes
+    toc_depth: '2'
   pdf_document:
     number_sections: yes
     toc: yes
@@ -24,7 +27,7 @@ En cuanto al deporte del que nos ocuparemos en este trabajo, concretamente el ba
 
 Todos estos resultados se encuentran en la web oficial de la competición, www.euroleague.net
 
-![](C:/Users/USER-PC/Desktop/logo.PNG =100x20) 
+![](C:/Users/USER-PC/Desktop/logo.PNG) 
 
 
 # Componentes del grupo
@@ -64,7 +67,7 @@ El segundo dataset, recoge las estadísticas individuales dentro de un partido y
 
 Así, definimos la estructura de los dataset como:
 
-- **Euroleague_Scoreboards**: Dicho dataset recoge las resultados por partido y se compone de siete campos:
+- **Euroleague_Scoreboards**: Dicho dataset recoge los resultados por partido y se compone de siete campos:
   - MatchId: identificador único del partido.
   - Date: fecha del partido.
   - HomeTeam: nombre del equipo local.
@@ -118,7 +121,10 @@ La mayor ambición es la realización de un análisis profundo que permita a los
 
 # Licencia
 
-
+La licencia escogida para la publicación de este conjunto de datos ha sido **CC BY-SA 4.0 License**. A continuación detallamos los motivos principales qeu han llevado a escoger esta licencia:
+- *Se debe proveer proveer el nombre del creador del conjunto de datos generado, indicando los cambios que se han realizado*. De esta manera, se reconoce el trabajo ajeno y en qué medida se han realizado aportaciones en realidad con el trabajo original.
+- *Se permite un uso comercial*. Esto haría que incrementen las probabilidades de que una empresa utilice los datos generados y realicen trabajos de calidad que reporten cierto reconocimiento a los autores.
+- *Las contribuciones realizadas a posteriori sobre el trabajo publicado bajo esta licencia deberán distribuirse bajo la misma*. Eso hace que el trabajo del autor original continúe distribuyéndose bajo los términos que él mismo planteó.
 
 # Contribuciones al trabajo
 
@@ -129,3 +135,30 @@ Redacción de las respuestas     | MSP, AAG
 Creación del repositorio GitHub | MSP, AAG
 Desarrollo código               | MSP, AAG
 Publicación de los datasets     | MSP, AAG
+
+
+# Código
+
+El proceso de extracciÃ³n ha sido bastante sencillo. En primer lugar accedimos al fichero _robots.txt_ para la web de la Euroliga, disponible en el siguiente enlace:
+
+* https://www.euroleague.net/robots.txt
+
+El contenido de este fichero se muestra a continuaciÃ³n:
+
+```
+User-agent: Sosospider
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: *
+Crawl-delay: 15
+```
+
+Podemos ver que para las herramientas `Sosospider`, `Yandex` y `Baiduspider` está bloqueado todo el contenido, pero dado que no usamos ninguna de ellas no nos suponía un problema. La última instrucciónn indica que para cualquier _"user-agent"_  se aplica la política `Crawl-delay` con un valor de 15 segundos.
+
+Ninguna de estas restricciones afectaban al desarrollo de nuestro código _Python_ por lo que comenzamos con su desarrollo. Importamos la librería _BeautifulSoup_ y probamos a obtener todo el código HTML de la página. Después de revisar que los datos que queríamos _scrapear_ se encontraban en el HTML ya comenzamos a utilizar las funciones de esta librería como `find()` o `find_all()`. Cuando ya teníamos todos los datos de los partidos, decidimos obtener el segundo dataset para las estadísticas individuales de los jugadores. Finalmente realizamos una refactorización del código para pasar de un paradigma de programación estructurada a un paradigma de programación orientada a objetos con la creación de nuestra propia clase `EuroligaScraper`.
